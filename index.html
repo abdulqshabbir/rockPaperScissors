@@ -40,9 +40,9 @@
           else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
             return 'computer win';
           }
-          else {
-            alert("You've entered an invalid option!");
-            playOneRound();
+          else if (playerSelection !== 'Rock' && playerSelection !== 'Scissors' && playerSelection !== 'Paper') {
+            alert("You did not enter a valid input!");
+            return playOneRound();
           }
         }
 
@@ -57,6 +57,7 @@
           computerSelection = computerPlay();
           playerSelection = prompt('Choose either rock, paper or scissors!');
           playerSelection = capitalizeUserInput(playerSelection);
+
           return checkForWins(playerSelection, computerSelection);
         }
 
@@ -68,18 +69,16 @@
 
             if(resultOfRound == 'player win') {
               playerTally++;
-              console.log('player tally', playerTally);
             }
             else if (resultOfRound == 'computer win') {
               computerTally++;
-              console.log('computer tally', computerTally);
             }
             else if (resultOfRound == 'tie') {
-              console.log('tie game');
+              console.log('tie');
             }
           }
-          console.log('player tally', playerTally);
-          console.log('computer tally', computerTally);
+          console.log('final player tally', playerTally);
+          console.log('final computer tally', computerTally);
           return;
         }
 
