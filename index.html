@@ -19,19 +19,30 @@
 
         function checkForWins(playerSelection, computerSelection) {
           if (playerSelection === computerSelection) {
-            alert("It's a tie game!");
+            return 'tie';
           }
+
           else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-            alert("You Win!")
+            return 'player win';
           }
           else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-            alert("You Win!");
+            return 'player win';
           }
           else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-            alert("You Win!");
+            return 'player win';
+          }
+          else if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
+            return 'computer win';
+          }
+          else if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
+            return 'computer win';
+          }
+          else if (computerSelection === 'Paper' && playerSelection === 'Rock') {
+            return 'computer win';
           }
           else {
-            alert("You Lose. Computer Wins.")
+            alert("You've entered an invalid option!");
+            playOneRound();
           }
         }
 
@@ -46,9 +57,32 @@
           computerSelection = computerPlay();
           playerSelection = prompt('Choose either rock, paper or scissors!');
           playerSelection = capitalizeUserInput(playerSelection);
+          return checkForWins(playerSelection, computerSelection);
+        }
 
-          checkForWins(playerSelection, computerSelection);
+        function playGame() {
+          let computerTally = 0;
+          let playerTally = 0;
+          for (var i = 1; i < 6; i++) {
+            let resultOfRound = playOneRound();
+
+            if(resultOfRound == 'player win') {
+              playerTally++;
+              console.log('player tally', playerTally);
+            }
+            else if (resultOfRound == 'computer win') {
+              computerTally++;
+              console.log('computer tally', computerTally);
+            }
+            else if (resultOfRound == 'tie') {
+              console.log('tie game');
+            }
           }
+          console.log('player tally', playerTally);
+          console.log('computer tally', computerTally);
+          return;
+        }
+
       </script>
   </body>
 </html>
